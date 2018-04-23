@@ -1,0 +1,52 @@
+{
+  "hints": [],
+  "properties": [
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.pool-max-idle",
+      "defaultValue": 0,
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.pool-max-total",
+      "defaultValue": 0,
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.pool-max-wait",
+      "defaultValue": 0,
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.port",
+      "defaultValue": 0,
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis.timeout",
+      "defaultValue": 0,
+      "type": "java.lang.Integer"
+    }
+  ],
+  "groups": [
+    {
+      "sourceType": "com.imooc.miaosha.redis.RedisConfig",
+      "name": "redis",
+      "type": "com.imooc.miaosha.redis.RedisConfig"
+    }
+  ]
+}
