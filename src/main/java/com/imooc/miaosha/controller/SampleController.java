@@ -8,6 +8,7 @@ import com.imooc.miaosha.redis.UserKey;
 import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * Created by hushida on 18-4-15.
  */
+@EnableAutoConfiguration
 @Controller
 @RequestMapping("/demo")
 public class SampleController {

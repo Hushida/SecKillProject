@@ -2,6 +2,7 @@ package com.imooc.miaosha.service;
 
 import com.imooc.miaosha.dao.UserDao;
 import com.imooc.miaosha.domin.User;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by hushida on 18-4-15.
  */
 @Service
+@MapperScan("com.imooc.miaosha.dao.UserDao")
 public class UserService {
     @Autowired
     UserDao userDao;
