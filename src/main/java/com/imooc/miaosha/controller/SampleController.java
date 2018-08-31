@@ -66,4 +66,11 @@ public class SampleController {
         //String str = redisService.get(Prefix, "key2", String.class);
         return Result.success(true);
     }
+
+    @RequestMapping("/db/get")
+    @ResponseBody
+    public Result<User> dbGet() {
+        User user = userService.getById(1);
+        return Result.success(user);
+    }
 }
