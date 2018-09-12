@@ -52,9 +52,6 @@ public class RedisService {
 			 }
 			 return true;
 		 }finally {
-             
-             
-             
 			  returnToPool(jedis);
 		 }
 	}
@@ -69,6 +66,22 @@ public class RedisService {
 			//生成真正的key
 			 String realKey  = prefix.getPrefix() + key;
 			return  jedis.exists(realKey);
+		 }finally {
+			  returnToPool(jedis);
+		 }
+	}
+	
+	/**
+	 * 删除
+	 * */
+	public boolean delete(KeyPrefix prefix, String key) {
+		 Jedis jedis = null;
+		 try {
+			 jedis =  jedisPool.getResource();
+			//生成真正的key
+			String realKey  = prefix.getPrefix() + key;
+			long ret =  jedis.del(key);
+			return ret > 0;
 		 }finally {
 			  returnToPool(jedis);
 		 }
