@@ -31,4 +31,5 @@ public class GoodsDetailVo {
 	public void setUser(MiaoshaUser user) {
 		this.user = user;
 	}
+    
 }

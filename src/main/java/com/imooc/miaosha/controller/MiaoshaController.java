@@ -55,7 +55,7 @@ public class MiaoshaController {
     		return Result.error(CodeMsg.SESSION_ERROR);
     	}
     	//判断库存
-    	GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);//10个商品，req1 req2
+    	GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);//10个商品，请求req1 req2
     	int stock = goods.getStockCount();
     	if(stock <= 0) {
     		return Result.error(CodeMsg.MIAO_SHA_OVER);
