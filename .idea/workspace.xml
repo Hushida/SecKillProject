@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcb0e68f-b8ca-4370-b20e-bf2a72d1c64b" name="Default" comment="finish 2.1 and 2.2">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SecKillProject.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/imooc/miaosha/domin/MiaoshaUser.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/imooc/miaosha/domin/User.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/OrderService.java" afterPath="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/OrderService.java" />
     </list>
     <ignored path="miaosha_idea.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -190,8 +189,8 @@
       <file leaf-file-name="OrderService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/OrderService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13483146">
-              <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.16853933">
+              <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -291,7 +290,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/MiaoshaService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/GoodsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/dao/GoodsDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/OrderService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/miaosha_fail.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/dao/OrderDao.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/order_detail.html" />
@@ -310,6 +308,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/redis/RedisService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/vo/GoodsDetailVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/controller/MiaoshaController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/OrderService.java" />
       </list>
     </option>
   </component>
@@ -1316,7 +1315,7 @@
       <workItem from="1536756984203" duration="466000" />
       <workItem from="1536757555293" duration="2065000" />
       <workItem from="1537185283228" duration="7695000" />
-      <workItem from="1537585436252" duration="167000" />
+      <workItem from="1537585436252" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="change README.md&#10;">
       <created>1524129526762</created>
@@ -1346,7 +1345,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152968000" />
+    <option name="totallyTimeSpent" value="153404000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1798,8 +1797,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/imooc/miaosha/service/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13483146">
-          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.16853933">
+          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
           <folding />
         </state>
       </provider>
