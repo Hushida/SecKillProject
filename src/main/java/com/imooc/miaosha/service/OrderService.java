@@ -24,6 +24,7 @@ public class OrderService {
 	
 	public MiaoshaOrder getMiaoshaOrderByUserIdGoodsId(long userId, long goodsId) {
 		//return orderDao.getMiaoshaOrderByUserIdGoodsId(userId, goodsId);
+        //判断是否秒杀到的时候，不去查数据库，而是查缓存，可以提升性能
 		return redisService.get(OrderKey.getMiaoshaOrderByUidGid, ""+userId+"_"+goodsId, MiaoshaOrder.class);
 	}
 	
@@ -51,6 +52,7 @@ public class OrderService {
 		miaoshaOrder.setUserId(user.getId());
 		orderDao.insertMiaoshaOrder(miaoshaOrder);
 		
+        //生成订单完成之后，需要写入到缓存redis当中
 		redisService.set(OrderKey.getMiaoshaOrderByUidGid, ""+user.getId()+"_"+goods.getId(), miaoshaOrder);
 		 
 		return orderInfo;
