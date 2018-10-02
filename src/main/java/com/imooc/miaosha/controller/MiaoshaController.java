@@ -1,5 +1,9 @@
 package com.imooc.miaosha.controller;
 
+import com.imooc.miaosha.rabbitmq.MQSender;
+import com.imooc.miaosha.rabbitmq.MiaoshaMessage;
+import com.imooc.miaosha.redis.GoodsKey;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +24,11 @@ import com.imooc.miaosha.service.MiaoshaUserService;
 import com.imooc.miaosha.service.OrderService;
 import com.imooc.miaosha.vo.GoodsVo;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/miaosha")
-public class MiaoshaController {
+public class MiaoshaController implements InitializingBean {
 
 	@Autowired
 	MiaoshaUserService userService;
@@ -38,6 +44,26 @@ public class MiaoshaController {
 	
 	@Autowired
 	MiaoshaService miaoshaService;
+
+	@Autowired
+	MQSender sender;
+
+	private
+
+	/**
+	 * initialize the system
+	 *
+	 */
+	public void afterPropertiesSet() throws Exception {
+		List<GoodsVo> goodsList = goodsService.listGoodsVo();
+		if(goodsList == null) {
+			return ;
+		}
+		for(GoodsVo goods: goodsList) {
+			redisService.set(GoodsKey.getMiaoshaGoodsStock, ""+goods.getId(), goods.getStockCount());
+
+		}
+	}
 	
 	/**
 	 * QPS:1306
@@ -48,12 +74,33 @@ public class MiaoshaController {
 	 * */
     @RequestMapping(value="/do_miaosha", method=RequestMethod.POST)
     @ResponseBody
-    public Result<OrderInfo> miaosha(Model model,MiaoshaUser user,
+    public Result<Integer> miaosha(Model model,MiaoshaUser user,
     		@RequestParam("goodsId")long goodsId) {
     	model.addAttribute("user", user);
     	if(user == null) {
     		return Result.error(CodeMsg.SESSION_ERROR);
     	}
+
+    	//reduce inventory in advance
+		long stock = redisService.decr(GoodsKey.getMiaoshaGoodsStock, ""+goodsId);
+    	if(stock < 0) {
+			return Result.error(CodeMsg.MIAO_SHA_OVER);
+		}
+
+		//判断是否已经秒杀到了
+		MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);
+		if(order != null) {
+			return Result.error(CodeMsg.REPEATE_MIAOSHA);
+		}
+
+		//enter the queue
+		MiaoshaMessage mm = new MiaoshaMessage();
+		mm.setUser(user);
+		mm.setGoodsId(goodsId);
+		sender.sendMiaoshaMessage(mm);
+		return Result.success(0); //being lining up
+
+    	/*
     	//判断库存
     	GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);//10个商品，请求req1 req2
     	int stock = goods.getStockCount();
@@ -68,5 +115,26 @@ public class MiaoshaController {
     	//减库存 下订单 写入秒杀订单
     	OrderInfo orderInfo = miaoshaService.miaosha(user, goods);
         return Result.success(orderInfo);
+        */
     }
+
+	/**
+	 *
+	 * @param model
+	 * @param user
+	 * @param goodsId
+	 * @return
+	 */
+	@RequestMapping(value="/result", method=RequestMethod.GET)
+	@ResponseBody
+	public Result<Long> miaoshaResult(Model model,MiaoshaUser user,
+								   @RequestParam("goodsId")long goodsId) {
+		model.addAttribute("user", user);
+		if (user == null) {
+			return Result.error(CodeMsg.SESSION_ERROR);
+		}
+		long result = miaoshaService.getMiaoshaResult(user.getId(), goodsId);
+		return Result.success(result);
+	}
+
 }
